@@ -2,11 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
+
+import Barchart from './Barchart/Barchart';
+import Circlechart from './Circlechart/Circlechart';
+import Linechart from './Linechart/Linechart';
+
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div style={{display:'flex',flexDirection:'column', justifyItems:'flex-start'}}>
+    <Linechart />
+    </div>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
