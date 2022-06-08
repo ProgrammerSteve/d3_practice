@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import * as d3 from "d3";
-import './Linechart.css';
+import './Linechart2.css';
 
 
 
-const Linechart=({data,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight})=>{
+const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight})=>{
 
     //set up dimensions for svg element
     const margin = { top: 10, right: 10, bottom: 50, left: 50 }
@@ -31,8 +31,8 @@ const Linechart=({data,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight})=>{
 
 
     //creates a dataset object
-    const dataset = d3.range(data.length).map((d,ind) => {
-        return { x: data[ind][0], y: data[ind][1] }
+    const dataset = d3.range(data_x.length).map((d,ind) => {
+        return { x: data_x[ind], y: data_y[ind] }
       })
 
 
@@ -128,10 +128,10 @@ const Linechart=({data,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight})=>{
         }
 
     }
-    ,[data])
+    ,[data_x,data_y])
 
 
 
     return(<div id="plot"></div>);
 }
-export default Linechart;
+export default Linechart2;

@@ -7,6 +7,7 @@ import App from './App';
 import Barchart from './Barchart/Barchart';
 import Circlechart from './Circlechart/Circlechart';
 import Linechart from './Linechart/Linechart';
+import Container from './Container';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -14,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
     <div style={{display:'flex',flexDirection:'column', justifyItems:'flex-start'}}>
-    <Linechart />
+    <Container />
     </div>
 
   </React.StrictMode>,
