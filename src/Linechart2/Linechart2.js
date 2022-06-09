@@ -2,8 +2,6 @@ import React, {useEffect, useState} from "react";
 import * as d3 from "d3";
 import './Linechart2.css';
 
-
-
 const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight})=>{
 
     //set up dimensions for svg element
@@ -37,14 +35,12 @@ const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight}
 
 
     useEffect(()=>{
-
-
         //creates the svg object for the chart
         const svg = d3
-        .select('#plot')
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
+            .select('#plot')
+            .append('svg')
+            .attr('width', width + margin.left + margin.right)
+            .attr('height', height + margin.top + margin.bottom)
 
         // create an svg group for x axis
         svg
@@ -61,7 +57,6 @@ const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight}
         //let tickLabels = ['A','B','C'];
         //axisBottom(xScale).tickFormat((d,i) => tickLabels[i]);
         //.tickSize(-200);
-
         
         // create an svg group for y axis
         svg
@@ -72,15 +67,6 @@ const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight}
             .selectAll("text")
             .attr("class", "tickmarks")
 
-
-
-
-
-
-
-
-
-
         // create the grids
         svg.append('g')
             .attr('class', 'axis-grid')
@@ -90,17 +76,8 @@ const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight}
             .attr('class', 'axis-grid')
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
             .call(yAxisGrid);
-        
 
-
-
-
-
-
-
-
-
-
+            
     
         // creates the line
         const line = d3
@@ -108,7 +85,6 @@ const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight}
             .x((d) => xScale(d.x))
             .y((d) => yScale(d.y))
 
-        
         //appends the line
         const lineWrapper = svg
             .append('g')
@@ -121,7 +97,6 @@ const Linechart2=({data_x,data_y,minX=0,minY=0,maxX,maxY,chartWidth,chartHeight}
             .attr('class', 'line')
             .attr('d', line)
         
-
         //whenever the chart rerenders, remove old data with callback
         return ()=>{
             d3.selectAll("svg").remove();

@@ -1,8 +1,9 @@
 
 import React, {useEffect, useState} from "react";
-import Linechart from "./Linechart/Linechart";
-import Linechart2 from "./Linechart2/Linechart2";
-import * as d3 from "d3";
+// import Linechart from "./Linechart/Linechart";
+// import Linechart2 from "./Linechart2/Linechart2";
+import Scatterplot from "./Scatterplot/Scatterplot";
+// import * as d3 from "d3";
 import './Container.css';
 
 
@@ -118,9 +119,9 @@ const Container=()=> {
     // const y3max=findMaxValue(year);
 
     return(
-        <div>
+        <div style={{display:'grid', placeItems:'center'}}>
             
-            <Linechart 
+            {/* <Linechart 
             data={data} 
             maxX={x1+1} 
             maxY={y1+3} 
@@ -134,24 +135,52 @@ const Container=()=> {
             maxY={y2+3} 
             chartWidth={800} 
             chartHeight={420}
-            />
+            /> */}
+
+
+            {/* <Scatterplot
+            data_x={[0,1,2,3,4,5,6,7,8,9]} 
+            data_y={[0,1,2,3,4,5,6,7,8,9]} 
+            minX={0}
+            maxX={10} 
+            minY={0} 
+            maxY={10} 
+            chartWidth={800} 
+            chartHeight={420}
+            /> */}
+
+            <div style={{height:"250px"}}></div>
 
             {
                 loading||mass.length==0||year.length==0?
-                <p>Loading...</p>:
-                <Linechart2 
-                data_x={mass} 
-                data_y={year} 
-                maxX={800} 
-                minY={2005} 
-                maxY={2023} 
+                <Scatterplot
+                data_x={[]} 
+                data_y={[]} 
+                minX={2005}
+                maxX={2023} 
+                minY={0} 
+                maxY={800}  
                 chartWidth={800} 
                 chartHeight={420}
                 />
+                :
+                <>
+                <Scatterplot
+                data_x={year} 
+                data_y={mass} 
+                minX={2005}
+                maxX={2023} 
+                minY={0} 
+                maxY={800}  
+                chartWidth={800} 
+                chartHeight={420}
+                />
+                </>
             }
-
+{/* 
             <button onClick={()=>console.log('mass: ', minMaxMass)}>Mass</button>
-            <button onClick={()=>console.log('year: ', minMaxYear)}>Year</button>
+            <button onClick={()=>console.log('year: ', minMaxYear)}>Year</button> 
+*/}
         </div>
     )
 
