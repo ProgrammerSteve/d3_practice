@@ -17,8 +17,6 @@ const Container=()=> {
     const [loading,setLoading]=useState(true);
 
     useEffect(()=>{
-
-
         fetch('https://api.spacex.land/graphql/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -55,10 +53,7 @@ const Container=()=> {
                 }
 
             );
-
-
     },[])
-
 
     const findMaxValue=(arr)=>{
         let maxValue=0;
@@ -76,8 +71,6 @@ const Container=()=> {
         return minValue
     }
 
-
-
     const findMaxValues=(arr)=>{
         let maxX=0;
         let maxY=0;
@@ -88,10 +81,6 @@ const Container=()=> {
         return [maxX,maxY]
     }
 
-
-
-
-    
     const data=[
         [0,2],
         [4,7],
@@ -162,6 +151,9 @@ const Container=()=> {
                 maxY={800}  
                 chartWidth={800} 
                 chartHeight={420}
+                xTitle={'Year'}
+                yTitle={'Mass in metric Tons'}
+                gTitle={'SpaceX Rocket Mass vs Time'}
                 />
                 :
                 <>
@@ -174,6 +166,9 @@ const Container=()=> {
                 maxY={800}  
                 chartWidth={800} 
                 chartHeight={420}
+                xTitle={'Year'}
+                yTitle={'Mass in metric Tons'}
+                gTitle={'SpaceX Rocket Mass vs Time'}
                 />
                 </>
             }
