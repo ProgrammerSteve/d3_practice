@@ -50,6 +50,17 @@ const Scatterplot=(
     let sumXY=0;
     let firstPointX=minX;
     let lastPointX=maxX;
+    let firstPointY=minY;
+    let lastPointY=maxY;
+    let yintercept=0;
+    let slope=0;
+    let SSR= 0;
+    let SST= 0;
+
+    const regressionline=(x,slope,yint)=>{
+        return x*slope+yint;
+    }
+
     data_x.forEach((num,ind)=>{
         sumX+=data_x[ind];
         sumY+=data_y[ind];
@@ -59,16 +70,10 @@ const Scatterplot=(
         if(num>lastPointX)lastPointX=num;
     })
     let mean=sumY/numPoints;
-    let yintercept= (sumY*sumXsq - sumX*sumXY)/(numPoints*sumXsq-sumX**2);
-    let slope=(numPoints*sumXY-sumX*sumY)/(numPoints*sumXsq-sumX**2)
-    const regressionline=(x,slope,yint)=>{
-        return x*slope+yint;
-    }
-    let firstPointY=regressionline(firstPointX,slope,yintercept)
-    let lastPointY=regressionline(lastPointX,slope,yintercept)
-    
-    let SSR= 0;
-    let SST= 0;
+    yintercept= (sumY*sumXsq - sumX*sumXY)/(numPoints*sumXsq-sumX**2);
+    slope=(numPoints*sumXY-sumX*sumY)/(numPoints*sumXsq-sumX**2)
+    firstPointY=regressionline(firstPointX,slope,yintercept)
+    lastPointY=regressionline(lastPointX,slope,yintercept)
     data_x.forEach((num,ind)=>{
         SSR+=(data_y[ind]-regressionline(data_x[ind],slope,yintercept))**2;
         SST+=(data_y[ind]-mean)**2;
@@ -149,6 +154,13 @@ const Scatterplot=(
 
 
 
+        let equation= ``;
+        let rsqString=``;
+        if(data_x.length>0){
+            equation=`y=${yintercept.toFixed(2)}+${slope.toFixed(2)}x`
+            rsqString=`r^2=${r_squared.toFixed(2)}`
+        }
+
         // regression equation label
         svg.append('text')
 
@@ -156,7 +168,7 @@ const Scatterplot=(
             .attr('x', (chartWidth-100))
             .attr('y', margin.top+70)            
             .style('font-family', 'Helvetica')
-            .text(`y=${yintercept.toFixed(2)}+${slope.toFixed(2)}x`);
+            .text(equation);
         // regression coeff.
         svg.append('text')
 
@@ -164,7 +176,7 @@ const Scatterplot=(
             .attr('x', (chartWidth-100))
             .attr('y', margin.top+100)
             .style('font-family', 'Helvetica')
-            .text(`r^2=${r_squared.toFixed(2)}`);
+            .text(rsqString);
 
 
 
@@ -203,7 +215,7 @@ const Scatterplot=(
         return ()=>{
             d3.selectAll("svg").remove();
         }
-    },[data_x,data_y])
+    },[data_x,data_y,chartWidth])
 
     return(
         <div id="scatter"></div>
