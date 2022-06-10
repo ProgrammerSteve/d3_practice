@@ -1,34 +1,18 @@
 #container{
-	background-color: steelblue;
-	margin-top: 10px;
-	padding: 10px 0px;
-	padding-left: 10px;
+	background-color: white;
 }
-#log{
-	background-color: beige;
-	padding-bottom: 20px;
-	padding-left: 10px;
-	height: 250px;
-	overflow-y:scroll;
+
+.barChartSort{
+	background-color: white;
 }
+
 #resetButton, #sortButton{
 	width:100px;
 	padding-left: 10px;
 }
 
-.top{
-	padding-left: 10px;
-}
 
-svg rect {
-    fill: orange;
-}
-
-svg text {
-    fill:white;
-    font: 10px sans-serif;
-    text-anchor: end;
-}
-label {
-    display:block;
+.top {
+    display:flex;
+	flex-direction: column;
 }

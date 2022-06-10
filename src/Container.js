@@ -1,14 +1,12 @@
-
-import React, {useEffect, useState, useRef, useLayoutEffect} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import Scatterplot from "./Scatterplot/Scatterplot";
-import App from './App.js'
+import App from './App.js';
 import './Container.css';
 
 const Container=()=> {
     const [mass,setMass]=useState([]);
     const [year,setYear]=useState([]);
     const [loading,setLoading]=useState(true);
-
     const divRef=useRef(null);
     const [dynamicWidth,setDynamicWidth]=useState(0)
 
@@ -71,9 +69,13 @@ const Container=()=> {
             backgroundColor:'white'
             }}>
             
-            <div style={{height:"250px"}}></div>
+            {/* <div style={{height:"250px"}}></div> */}
+            <App 
+            dynamicWidth={dynamicWidth}
+            loading={loading}
+            />
             {
-                loading||mass.length==0||year.length==0?
+                loading||mass.length===0||year.length===0?
                 <Scatterplot
                 data_x={[]} 
                 data_y={[]} 
@@ -109,6 +111,10 @@ const Container=()=> {
                 The mass is plotted against the year and a linear regression is 
                 plotted onto the scatter plot along with its equation.
             </p>
+
+            
+            {/* <Animation/> */}
+
 
         </div>
     )
